@@ -4,7 +4,14 @@
       <img class="logo" src="@/assets/img/login_logo.png" />
     </div>
     <div class="body">
-      <c-form v-if="type === 'login'" :data="loginData" :form="loginColumn" :label-width="'0px'">
+      <c-form
+        v-show="type === 'login'"
+        ref="loginForm"
+        :data="loginData"
+        :form="loginColumn"
+        :rules="loginRules"
+        :label-width="'0px'"
+      >
         <template v-slot:after>
           <div class="actions">
             <span class="action-item" @click="switchType('register')">用户注册</span>
@@ -15,7 +22,14 @@
           </div>
         </template>
       </c-form>
-      <c-form v-else-if="type === 'register'" :data="registerData" :form="registerColumn" :label-width="'0px'">
+      <c-form
+        v-show="type === 'register'"
+        ref="registerForm"
+        :data="registerData"
+        :form="registerColumn"
+        :rules="registerRules"
+        :label-width="'0px'"
+      >
         <template v-slot:after>
           <div class="actions">
             <span class="action-item" @click="switchType('login')">去登录</span>
@@ -28,6 +42,7 @@
 
 <script>
 import CForm from "@/components/comm/Form.vue";
+import { checkPhone } from "@/utils/check";
 export default {
   components: {
     "c-form": CForm
@@ -64,7 +79,24 @@ export default {
           ]
         }
       ],
-      registerData: {},
+      loginRules: {
+        username: [
+          { required: true, message: "手机号不能为空", trigger: "blur" },
+          {
+            validator: this.validatePhone,
+            message: "手机号格式不正确",
+            trigger: "blur"
+          }
+        ],
+        password: [{ required: true, message: "密码不能为空", trigger: "blur" }]
+      },
+      registerData: {
+        nickname: "",
+        username: "",
+        password: "",
+        confirmPassword: "",
+        referralCode: ""
+      },
       registerColumn: [
         {
           type: "input",
@@ -73,7 +105,7 @@ export default {
         },
         {
           type: "input",
-          prop: "mobile",
+          prop: "username",
           placeholder: "手机号"
         },
         {
@@ -83,7 +115,7 @@ export default {
         },
         {
           type: "password",
-          prop: "password",
+          prop: "confirmPassword",
           placeholder: "确认密码"
         },
         {
@@ -105,11 +137,38 @@ export default {
           ]
         }
       ],
+      registerRules: {
+        nickname: [{ required: true, message: "昵称不能为空", trigger: "blur" }],
+        username: [
+          { required: true, message: "手机号不能为空", trigger: "blur" },
+          {
+            validator: this.validatePhone,
+            message: "手机号不能为空",
+            trigger: "blur"
+          }
+        ],
+        password: [{ required: true, message: "密码不能为空", trigger: "blur" }],
+        confirmPassword: [{ validator: this.validatePwd, trigger: "blur" }]
+      },
       checked: false
     };
   },
+  computed: {
+    loading() {
+      return this.$store.state.loading;
+    }
+  },
   methods: {
+    switchType(type) {
+      this.type = type;
+      this.$nextTick(() => {
+        this.$refs.registerForm.resetFields();
+        this.$refs.loginForm.resetFields();
+      });
+    },
     submit(valid, data) {
+      if (this.loading) return;
+      this.$store.commit("UPDATE_LOADING", false);
       if (valid) {
         switch (this.type) {
           case "login":
@@ -123,13 +182,32 @@ export default {
       console.log(valid, data);
     },
     toLogin(data) {
-      console.log(data);
+      this.$fetch
+        .post("/login", data)
+        .then(({ data }) => {
+          console.log(data);
+          this.$store.commit("UPDATE_LOADING", false);
+        })
+        .catch(() => {
+          this.$store.commit("UPDATE_LOADING", false);
+        });
     },
     toRegister(data) {
-      console.log(data);
+      this.$fetch
+        .post("/register", data)
+        .then(({ data }) => {
+          console.log(data);
+          this.$store.commit("UPDATE_LOADING", false);
+        })
+        .catch(() => {
+          this.$store.commit("UPDATE_LOADING", false);
+        });
     },
-    switchType(type) {
-      this.type = type;
+    validatePhone(rule, value, callback) {
+      !checkPhone(value) ? callback(new Error()) : callback();
+    },
+    validatePwd(rule, value, callback) {
+      value !== this.registerData.password ? callback(new Error()) : callback();
     }
   }
 };

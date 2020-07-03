@@ -3,17 +3,11 @@
  * @Author: chenxiaofan
  * @Date: 2020-05-13 10:40:22
  * @LastEditors: chenxiaofan
- * @LastEditTime: 2020-07-03 01:05:16
+ * @LastEditTime: 2020-07-03 21:20:25
  * @FilePath: \wanrenbang\src\components\comm\Form.vue
  -->
 <template>
-  <el-form
-    ref="form"
-    :model="data"
-    :rules="rules"
-    :label-width="labelWidth"
-    :class="classs"
-  >
+  <el-form ref="form" :model="data" :rules="rules" :label-width="labelWidth" :class="classs">
     <el-form-item
       v-for="(formItem, index) in form"
       :key="index"
@@ -33,9 +27,7 @@
         </template>
       </template>
       <!-- 文本框、密码框 -->
-      <template
-        v-if="formItem.type === 'input' || formItem.type === 'password'"
-      >
+      <template v-if="formItem.type === 'input' || formItem.type === 'password'">
         <el-input
           v-model="data[formItem.prop]"
           :type="formItem.type === 'input' ? 'text' : formItem.type"
@@ -67,10 +59,7 @@
       </template>
       <!-- 操作 -->
       <template v-if="formItem.type === 'action'">
-        <div
-          class="btn-group"
-          :style="{ 'text-align': formItem.position || 'center' }"
-        >
+        <div class="btn-group" :style="{ 'text-align': formItem.position || 'center' }">
           <el-button
             v-for="(buttonItem, buttonIndex) in formItem.data"
             :key="buttonIndex"
@@ -147,34 +136,6 @@ export default {
           });
         }
       });
-      this.getContryCode();
-    },
-    /**
-     * 获取手机区号
-     */
-    getContryCode() {
-      if (!this.findItem("type", "phone")) return;
-      if (this.countryCodeList.length) return;
-      this.$Http
-        .get(
-          this.$Http.api.COUNTRY_CODE_JSON,
-          {},
-          {
-            baseURL: process.env.VUE_APP_WEB_URL
-          }
-        )
-        .then(({ data }) => {
-          let { top_country = [], list_country = [] } = data;
-          const topCods = top_country.map(item => item.code);
-          let num = 0;
-          list_country.slice().forEach((item, index) => {
-            if (topCods.some(code => code === item.code)) {
-              list_country.splice(index - num, 1);
-              num++;
-            }
-          });
-          this.countryCodeList = [].concat(top_country, list_country);
-        });
     },
     /**
      * 按钮事件触发
@@ -186,15 +147,10 @@ export default {
      * 校验
      */
     validator(buttonItem) {
-      this.$refs.form.validate((valid, messages) => {
+      this.$refs.form.validate(valid => {
         if (valid) {
           let data = JSON.parse(JSON.stringify(this.data));
-          typeof buttonItem.handler === "function" &&
-            buttonItem.handler(valid, data);
-        } else {
-          const firstKey = Object.keys(messages)[0];
-          const message = messages[firstKey][0].message;
-          this.$message(message);
+          typeof buttonItem.handler === "function" && buttonItem.handler(valid, data);
         }
       });
     },
@@ -260,7 +216,6 @@ export default {
 <style lang="less" scoped>
 .el-form-item {
   position: relative;
-  overflow: hidden;
 }
 /deep/ .el-form-item__label {
   line-height: 40px;

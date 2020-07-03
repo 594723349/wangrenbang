@@ -4,6 +4,7 @@ const postcss = px2rem({
 });
 
 module.exports = {
+  publicPath: "./",
   css: {
     loaderOptions: {
       postcss: {

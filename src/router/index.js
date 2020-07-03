@@ -1,14 +1,14 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+const Index = () => import(/* webpackChunkName: "about" */ "@/views/Index.vue");
 const Login = () => import(/* webpackChunkName: "about" */ "@/views/Login.vue");
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home
+    name: "Index",
+    component: Index
   },
   {
     path: "/login",
