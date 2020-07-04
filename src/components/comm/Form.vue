@@ -114,9 +114,6 @@ export default {
       this.reset();
     }
   },
-  created() {
-    this.getContryCode();
-  },
   methods: {
     reset() {
       this.$nextTick(() => {

@@ -48,8 +48,8 @@
       <p>幸运锦鲤：等待揭晓....</p>
     </div>
     <div class="detail-item operation">
-      <div class="button">我的参与记录</div>
-      <div class="button">历史幸运锦鲤</div>
+      <div class="button" @click="openPopup('join')">我的参与记录</div>
+      <div class="button" @click="openPopup('koiFish')">历史幸运锦鲤</div>
     </div>
     <div class="detail-item join-detail">
       <div class="detail-item-title"><span style="color:#5AB963;">l</span>用户参与详情</div>
@@ -68,14 +68,18 @@
         </li>
       </ul>
     </div>
+    <c-history ref="history"></c-history>
   </div>
 </template>
 
 <script>
 import CountDown from "@/components/comm/CountDown";
+import Chistory from "@/components/business/history";
+
 export default {
   components: {
-    "c-countdown": CountDown
+    "c-countdown": CountDown,
+    "c-history": Chistory
   },
   data() {
     return {
@@ -124,6 +128,13 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    openPopup(type) {
+      this.$refs.history.open({
+        type
+      });
+    }
   }
 };
 </script>

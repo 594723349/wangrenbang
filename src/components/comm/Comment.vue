@@ -1,7 +1,7 @@
 <template>
   <div class="c-comment">
-    <ul class="comment-list infinite-list" v-infinite-scroll="load" infinite-scroll-distance="0">
-      <li class="comment-item infinite-list-item" v-for="(item, index) in data" :key="index">
+    <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
+      <div class="comment-item infinite-list-item" v-for="(item, index) in data" :key="index">
         <div class="comment-info">
           <div class="message-box">
             <img class="avatar" :src="item.avatar" />
@@ -31,8 +31,8 @@
             </div>
           </div>
         </div>
-      </li>
-    </ul>
+      </div>
+    </van-list>
   </div>
 </template>
 
@@ -44,10 +44,20 @@ export default {
       default: () => []
     }
   },
+  data() {
+    return {
+      finished: false,
+      loading: false
+    };
+  },
   methods: {
-    load() {
-      console.log(12322);
-      this.$emit("load");
+    onLoad() {
+      this.loading = true;
+      this.$emit("load", this.done);
+    },
+    done(isFinsh = false) {
+      this.finished = isFinsh;
+      this.loading = false;
     }
   }
 };
@@ -57,10 +67,6 @@ export default {
 .c-comment {
   font-size: 14px;
   text-align: left;
-}
-.comment-list {
-  height: calc(100vh - 90px);
-  overflow: auto;
 }
 .comment-item {
   margin-bottom: 10px;

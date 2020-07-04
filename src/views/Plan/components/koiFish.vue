@@ -93,8 +93,10 @@ export default {
         this.$set(data, "state", 1);
       }
     },
-    load() {
-      console.log(123);
+    load(done) {
+      const copy = [].concat(this.commentList);
+      this.commentList = this.commentList.concat(copy);
+      done();
     }
   }
 };

@@ -25,7 +25,7 @@
           <c-countdown :remainTime="87000" @end="countDownEnd"></c-countdown>
           <div class="text">倒计时</div>
         </div>
-        <div class="button button-buy">立即参与</div>
+        <div class="button button-buy" @click="handleBuyPopup">立即参与</div>
       </div>
     </div>
     <div class="section section-2">
@@ -102,6 +102,27 @@
         </div>
       </div>
     </div>
+    <van-popup
+      v-model="buyPopupVisible"
+      position="bottom"
+      :safe-area-inset-bottom="true"
+      :close-on-click-overlay="false"
+      round
+    >
+      <div class="my-gold">我的金币：4321231</div>
+      <div class="title">
+        <span style="color:#E91E63;">l</span>圆梦计划<span style="color:#169BD5;">l</span>
+      </div>
+      <div class="stepper">参与<van-stepper v-model="buyNumber" />金币</div>
+      <div class="prompt">
+        <p>（1个金币获取1个圆梦号码）</p>
+        <p>（每天最多可参与100个金币）</p>
+      </div>
+      <div class="actions">
+        <van-button type="default" size="small" @click="handleBuyPopup(false)">取消</van-button>
+        <van-button type="info" size="small" @click="buy" :loading="loading">确认参与</van-button>
+      </div>
+    </van-popup>
   </div>
 </template>
 
@@ -111,9 +132,34 @@ export default {
   components: {
     "c-countdown": CountDown
   },
+  data() {
+    return {
+      buyPopupVisible: false,
+      buyNumber: 1
+    };
+  },
+  computed: {
+    loading() {
+      return this.$store.state.loading;
+    }
+  },
   methods: {
     countDownEnd() {
       console.log("倒计时结束");
+    },
+    handleBuyPopup(state = true) {
+      if (this.loading) return;
+      this.buyPopupVisible = state;
+      if (!state) {
+        this.buyNumber = 1;
+      }
+    },
+    buy() {
+      if (this.loading) return;
+      this.$store.commit("UPDATE_LOADING", true);
+      setTimeout(() => {
+        this.$store.commit("UPDATE_LOADING", false);
+      }, 500);
     }
   }
 };
@@ -275,6 +321,40 @@ export default {
     font-size: 50px;
     border-radius: 12px;
     margin: 0 3px;
+  }
+}
+/deep/ .van-popup {
+  padding: 10px;
+  font-size: 14px;
+  .my-gold {
+    text-align: left;
+    margin-bottom: 10px;
+  }
+  .title {
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  .stepper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .van-stepper__input {
+    width: 120px;
+    color: #ff9900;
+  }
+  .prompt {
+    font-size: 12px;
+    color: #999;
+    text-align: left;
+    padding-left: 80px;
+    margin-bottom: 20px;
+  }
+  .van-button {
+    width: 100px;
+    margin: 0 5px;
   }
 }
 </style>
