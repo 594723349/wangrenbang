@@ -31,6 +31,17 @@
             </div>
           </div>
         </div>
+        <div class="comment-operation">
+          <div class="share" @click="handleOperation('share', item)">
+            <img src="@/assets/img/share.png" />{{ item.shareNum || 0 }}
+          </div>
+          <div class="comment" @click="handleOperation('comment', item)">
+            <img src="@/assets/img/comment.png" />{{ item.commentNum || 0 }}
+          </div>
+          <div class="zan" @click="handleOperation('zan', item)">
+            <img src="@/assets/img/zan.png" />{{ item.zanNum || 0 }}
+          </div>
+        </div>
       </div>
     </van-list>
   </div>
@@ -58,6 +69,13 @@ export default {
     done(isFinsh = false) {
       this.finished = isFinsh;
       this.loading = false;
+    },
+    handleOperation(type, item) {
+      if (type === "zan") {
+        if (item.isZan) return;
+        this.$set(item, "zanNum", item.zanNum ? item.zanNum + 1 : 1);
+        item.isZan = true;
+      }
     }
   }
 };
@@ -116,7 +134,7 @@ export default {
   font-size: 12px;
 }
 .sex {
-  width: 10px;
+  width: 13px;
 }
 .links {
   color: #6d75f1;
@@ -133,6 +151,22 @@ export default {
   margin-bottom: 10px;
   span {
     padding: 10px;
+  }
+}
+.comment-operation {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 14px;
+  margin: 25px 0 10px 0;
+  & > div {
+    margin-right: 30px;
+  }
+  img {
+    width: 15px;
+    vertical-align: middle;
+    margin-right: 5px;
+    margin-top: -2px;
   }
 }
 </style>
