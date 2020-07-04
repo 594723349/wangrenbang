@@ -1,14 +1,24 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-const Index = () => import(/* webpackChunkName: "about" */ "@/views/Index.vue");
+
 const Login = () => import(/* webpackChunkName: "about" */ "@/views/Login.vue");
+
+const ServiceIndex = () => import(/* webpackChunkName: "about" */ "@/views/Service/index.vue");
+
+const PlanIndex = () => import(/* webpackChunkName: "about" */ "@/views/Plan/index.vue");
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Index",
-    component: Index
+    name: "Service",
+    alias: "/service",
+    component: ServiceIndex
+  },
+  {
+    path: "/plan",
+    name: "Plan",
+    component: PlanIndex
   },
   {
     path: "/login",

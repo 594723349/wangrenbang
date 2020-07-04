@@ -1,11 +1,3 @@
-<!--
- * @Description: 表单
- * @Author: chenxiaofan
- * @Date: 2020-05-13 10:40:22
- * @LastEditors: chenxiaofan
- * @LastEditTime: 2020-07-03 21:20:25
- * @FilePath: \wanrenbang\src\components\comm\Form.vue
- -->
 <template>
   <el-form ref="form" :model="data" :rules="rules" :label-width="labelWidth" :class="classs">
     <el-form-item
@@ -82,7 +74,6 @@
 </template>
 
 <script>
-// import {Form, FormItem, Input, Upload, Radio, DatePicker, Button} from "element-ui"
 export default {
   name: "CForm",
   props: {

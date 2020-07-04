@@ -6,6 +6,7 @@ import ElementUI from "element-ui";
 import fetch from "@/utils/fetch";
 import "./assets/styles/reset.less";
 import "element-ui/lib/theme-chalk/index.css";
+import "./assets/styles/public.less";
 import "amfe-flexible";
 
 Vue.use(ElementUI);
