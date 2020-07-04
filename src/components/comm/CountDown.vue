@@ -1,13 +1,28 @@
 <template>
   <div class="c-countdown">
-    <span v-for="(num, index) in timeTxt" :key="index" class="item" :class="{ 'is-num': num !== ':' }">
-      {{ num }}
-    </span>
+    <template v-if="type === 'block'">
+      <span v-for="(num, index) in timeTxt" :key="index" class="item" :class="{ 'is-num': num !== ':' }">
+        {{ num }}
+      </span>
+    </template>
+    <template v-else>
+      {{ timeTxt.join("") }}
+    </template>
   </div>
 </template>
 
 <script>
 export default {
+  props: {
+    type: {
+      type: String,
+      default: "block"
+    },
+    remainTime: {
+      // 倒计时间总秒数
+      default: ""
+    }
+  },
   data() {
     return {
       hour: "",
@@ -16,12 +31,7 @@ export default {
       promiseTimer: ""
     };
   },
-  props: {
-    remainTime: {
-      // 倒计时间总秒数
-      default: ""
-    }
-  },
+
   computed: {
     hourString() {
       return this.formatNum(this.hour);
@@ -91,21 +101,5 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.item {
-  display: inline-block;
-  width: 10px;
-  height: 70px;
-  line-height: 70px;
-  font-size: 40px;
-  font-weight: 700;
-  color: #e0e0df;
-}
-.is-num {
-  width: 50px;
-  background-color: rgba(141, 141, 170, 1);
-  font-size: 50px;
-  border-radius: 12px;
-  margin: 0 3px;
 }
 </style>

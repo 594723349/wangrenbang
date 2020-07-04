@@ -6,6 +6,7 @@
         :key="index"
         :class="{ active: index === active, ['tab-' + index]: index }"
         class="tab-item"
+        @click="change(index)"
       >
         {{ tab.label }}
       </li>
@@ -30,6 +31,11 @@ export default {
     layout: {
       type: String,
       default: "center"
+    }
+  },
+  methods: {
+    change(index) {
+      this.$emit("update:active", index);
     }
   }
 };

@@ -159,6 +159,7 @@ export default {
   justify-content: space-around;
   padding: 0 10px;
   margin-top: 25px;
+  align-items: flex-end;
   .total {
     position: absolute;
     top: -30px;
@@ -191,6 +192,7 @@ export default {
     &.bar-1 {
       background-color: rgb(226, 90, 83);
       color: rgb(226, 90, 83);
+      height: 200px;
       &::before {
         background-color: rgb(255, 153, 0);
       }
@@ -204,6 +206,7 @@ export default {
     &.bar-3 {
       background-color: rgb(253, 179, 93);
       color: rgb(253, 179, 93);
+      height: 250px;
       &::before {
         background-color: rgb(90, 185, 99);
       }
@@ -254,6 +257,24 @@ export default {
     p {
       color: rgb(172, 172, 172);
     }
+  }
+}
+/deep/ .c-countdown {
+  .item {
+    display: inline-block;
+    width: 10px;
+    height: 70px;
+    line-height: 70px;
+    font-size: 40px;
+    font-weight: 700;
+    color: #e0e0df;
+  }
+  .is-num {
+    width: 50px;
+    background-color: rgba(141, 141, 170, 1);
+    font-size: 50px;
+    border-radius: 12px;
+    margin: 0 3px;
   }
 }
 </style>
