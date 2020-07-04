@@ -281,8 +281,8 @@ export default {
 .count-down {
   margin-top: 40px;
   .text {
-    letter-spacing: 60px;
-    text-indent: 60px;
+    letter-spacing: 50px;
+    text-indent: 50px;
     text-align: center;
     margin: 5px 0;
   }
