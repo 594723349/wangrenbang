@@ -4,9 +4,6 @@
       {{ num }}
     </span>
   </div>
-  <!-- <span>{{
-    hour ? hourString + ":" + minuteString + ":" + secondString : minuteString + ":" + secondString
-  }}</span> -->
 </template>
 
 <script>
@@ -23,6 +20,26 @@ export default {
     remainTime: {
       // 倒计时间总秒数
       default: ""
+    }
+  },
+  computed: {
+    hourString() {
+      return this.formatNum(this.hour);
+    },
+    minuteString() {
+      return this.formatNum(this.minute);
+    },
+    secondString() {
+      return this.formatNum(this.second);
+    },
+    timeTxt() {
+      return [
+        ...this.hourString.split(""),
+        ":",
+        ...this.minuteString.split(""),
+        ":",
+        ...this.secondString.split("")
+      ];
     }
   },
   mounted() {
@@ -65,26 +82,6 @@ export default {
     },
     formatNum(num) {
       return num < 10 ? "0" + num : "" + num;
-    }
-  },
-  computed: {
-    hourString() {
-      return this.formatNum(this.hour);
-    },
-    minuteString() {
-      return this.formatNum(this.minute);
-    },
-    secondString() {
-      return this.formatNum(this.second);
-    },
-    timeTxt() {
-      return [
-        ...this.hourString.split(""),
-        ":",
-        ...this.minuteString.split(""),
-        ":",
-        ...this.secondString.split("")
-      ];
     }
   }
 };

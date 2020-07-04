@@ -28,7 +28,80 @@
         <div class="button button-buy">立即参与</div>
       </div>
     </div>
-    <div class="section"></div>
+    <div class="section section-2">
+      <div class="section-title">
+        <span>计划规则</span>
+      </div>
+      <div class="section-body rules">
+        <div class="rule-item">
+          <span style="color:#E91E63;">l</span>
+          <span style="color:#FFC107;">l</span>圆梦三部曲<span style="color:#2892EE;">l</span>
+          <span style="color:#5AB963;">l</span>
+        </div>
+        <div class="rule-item">
+          <div><span style="color:#2892EE;">l</span>第一步：赞赏幸运锦鲤免费获取金币</div>
+          <p>
+            （赞赏1元，系统免费赠送1个金币，赞赏100元，系统免费赠送100个金币，以此类推，赞赏N元，系统赠送N个金币）
+          </p>
+        </div>
+        <div class="rule-item">
+          <div><span style="color:#5AB963;">l</span>第二步：参与圆梦计划获取幸运号码</div>
+          <p>（用系统赠送的金币参与圆梦计划，参与1个金币获取1个幸运号码，每天最多可获取100个幸运号码）</p>
+        </div>
+        <div class="rule-item">
+          <div><span style="color:#E91E63;">l</span>第三步：中奖成为幸运锦鲤，接收别人的赞赏</div>
+          <p>
+            （每天20：50分准时开奖，开出的幸运号码，和你获得的幸运号码一样，那么你就是本期的幸运锦鲤，幸运锦鲤可以获得一次发帖许愿的机会发布愿望以后，将展示在幸运锦鲤大厅页面，接收别人的赞赏，收到的赞赏金额将和本期中奖的商币总额等量，直接存入账户，随时提现）
+          </p>
+        </div>
+        <div class="rule-item">
+          <div>
+            <span style="color:#FFC107;">l</span>
+            <span style="color:#5AB963;">l</span>幸运号码计算公式：[ (A+B) /C ] 取余数+10000001<span
+              style="color:#E91E63;"
+              >l</span
+            >
+            <span style="color:#2892EE;">l</span>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div><span style="color:#2892EE;">l</span>数值A=当天日期+当天总参与人数</div>
+          <p>
+            （如：2019年5月3号，总参与人数为：28374那么数值A=20190503+28374=20218877;）
+          </p>
+        </div>
+        <div class="rule-item">
+          <div><span style="color:#2892EE;">l</span>数值B=重庆时时彩每天固定第55期开奖号码</div>
+          <p>
+            （如：2019年5月3号，重庆时时彩第55期开奖号码为：37485那么数值B=37485，如果时时彩数据因为特殊情况未开出，那么数值B取值为00000；）
+          </p>
+        </div>
+        <div class="rule-item">
+          <div><span style="color:#E91E63;">l</span>数值C=当天总参与人数</div>
+        </div>
+        <div class="rule-item">
+          <div>
+            <span style="color:#E91E63;">l</span>
+            <span style="color:#FFC107;">l</span>注：余数取小数点前面的整数<span style="color:#2892EE;"
+              >l</span
+            >
+            <span style="color:#5AB963;">l</span>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div>
+            <span style="color:#2892EE;">l</span
+            >例：2017-11-28期总参与人数为：846545人，重庆时时彩20171128055期开奖号码：11232；
+          </div>
+        </div>
+        <div class="rule-item">
+          <div><span style="color:#2892EE;">l</span>A=20171128+846545=20017673;</div>
+        </div>
+        <div class="rule-item">
+          <div><span style="color:#FFC107;">l</span>B=11232;</div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -48,7 +121,30 @@ export default {
 
 <style lang="less" scoped>
 .section {
-  padding: 20px 40px;
+  padding: 20px 30px;
+}
+.section-2 .section-title {
+  font-size: 16px;
+  font-weight: 700;
+  span {
+    position: relative;
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      width: 120px;
+      height: 1px;
+      background-color: rgb(164, 164, 164);
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    &::before {
+      left: -122px;
+    }
+    &::after {
+      right: -122px;
+    }
+  }
 }
 .plan-id {
   font-size: 16px;
@@ -147,5 +243,17 @@ export default {
   margin: auto;
   margin-top: 30px;
   font-size: 16px;
+}
+.rules {
+  text-align: left;
+  .rule-item {
+    margin-bottom: 20px;
+    & > div {
+      font-weight: 700;
+    }
+    p {
+      color: rgb(172, 172, 172);
+    }
+  }
 }
 </style>
