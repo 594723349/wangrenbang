@@ -151,6 +151,7 @@ export default {
   .state {
     font-size: 14px;
     color: #b6b6b6;
+    font-weight: 400;
   }
 }
 .total {
