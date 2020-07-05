@@ -45,12 +45,15 @@ export default {
 
 <style lang="less" scoped>
 .header {
-  position: relative;
+  position: fixed;
   height: 40px;
   line-height: 40px;
   text-align: center;
   background-color: #e4e7ed;
   font-size: 14px;
+  width: 100%;
+  top: 0;
+  left: 0;
   .van-icon {
     position: absolute;
     left: 5px;
@@ -59,6 +62,7 @@ export default {
   }
 }
 .body {
-  min-height: calc(100vh - 40px);
+  padding-top: 40px;
+  min-height: 100vh;
 }
 </style>

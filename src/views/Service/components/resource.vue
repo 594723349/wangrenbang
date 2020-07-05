@@ -14,6 +14,10 @@
         </div>
       </template>
     </c-feed>
+    <div class="add">
+      <img src="@/assets/img/edit-article.png" />
+      <div>发帖</div>
+    </div>
   </div>
 </template>
 
@@ -118,5 +122,22 @@ export default {
 }
 .state-2 {
   background-color: rgba(255, 153, 0, 1);
+}
+.add {
+  position: fixed;
+  right: 20px;
+  bottom: 50px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 12px;
+  color: #2892ee;
+  background-color: rgb(255, 193, 7);
+  padding-top: 5px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  img {
+    width: 20px;
+  }
 }
 </style>
