@@ -2,23 +2,28 @@
   <div class="service-resource">
     <b-banner text="全心全意为用户服务" bg-color="rgba(59, 172, 106, 0.8"></b-banner>
     <b-search @change="handleSearch"></b-search>
-    <c-comment :data="commentList" @load="load">
+    <c-feed :data="commentList" @load="load">
       <template v-slot="scope">
         <div :class="['state', 'state-' + scope.data.state]" @click="handlerAction(scope.data)">
           {{ stateMap[scope.data.state] }}
         </div>
       </template>
-    </c-comment>
+      <template v-slot:detailAction="scope">
+        <div :class="['state', 'state-' + scope.data.state]" @click="handlerAction(scope.data)">
+          {{ stateMap[scope.data.state] }}
+        </div>
+      </template>
+    </c-feed>
   </div>
 </template>
 
 <script>
-import Comment from "@/components/comm/Comment";
+import Feed from "@/components/comm/Feed/index";
 import BBanner from "./banner";
 import BSearch from "./search";
 export default {
   components: {
-    "c-comment": Comment,
+    "c-feed": Feed,
     "b-banner": BBanner,
     "b-search": BSearch
   },

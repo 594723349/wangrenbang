@@ -127,8 +127,10 @@ export default {
     },
     closeBuyPopup() {
       this.buyPopupVisible = false;
-      this.currentData = {};
-      this.currentIndex = -1;
+      setTimeout(() => {
+        this.currentData = {};
+        this.currentIndex = -1;
+      }, 350);
     },
     buy() {
       if (this.buyLoading) return;

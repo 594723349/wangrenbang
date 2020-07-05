@@ -98,9 +98,11 @@ export default {
     },
     closeBuyPopup() {
       this.popupVisible = false;
-      this.currentData = {};
-      this.currentIndex = -1;
-      this.buyNumber = 1;
+      setTimeout(() => {
+        this.currentData = {};
+        this.currentIndex = -1;
+        this.buyNumber = 1;
+      }, 350);
     },
     action() {
       if (this.actionLoading) return;

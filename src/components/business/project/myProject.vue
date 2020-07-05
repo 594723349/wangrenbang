@@ -92,10 +92,12 @@ export default {
     },
     closeBuyPopup() {
       this.popupVisible = false;
-      this.currentData = {};
-      this.currentIndex = -1;
-      this.sellNumber = "";
-      this.sellPrice = "";
+      setTimeout(() => {
+        this.currentData = {};
+        this.currentIndex = -1;
+        this.sellNumber = "";
+        this.sellPrice = "";
+      }, 350);
     },
     action() {
       if (this.actionLoading) return;

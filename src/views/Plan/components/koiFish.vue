@@ -1,20 +1,20 @@
 <template>
   <div class="plan-koifish">
-    <c-comment :data="commentList" @load="load">
+    <c-feed :data="commentList" @load="load">
       <template v-slot="scope">
         <div :class="['state', 'state-' + scope.data.state]" @click="handlerAction(scope.data)">
           {{ stateMap[scope.data.state] }}
         </div>
       </template>
-    </c-comment>
+    </c-feed>
   </div>
 </template>
 
 <script>
-import Comment from "@/components/comm/Comment";
+import Feed from "@/components/comm/Feed/index";
 export default {
   components: {
-    "c-comment": Comment
+    "c-feed": Feed
   },
   data() {
     return {

@@ -2,23 +2,23 @@
   <div class="service-welfare">
     <b-banner text="能帮一个事一个" bg-color="rgba(255, 153, 0, 1)"></b-banner>
     <b-search @change="handleSearch"></b-search>
-    <c-comment :data="commentList" @load="load">
+    <c-feed :data="commentList" @load="load">
       <template v-slot="scope">
         <div :class="['state', 'state-' + scope.data.state]" @click="handlerAction(scope.data)">
           {{ stateMap[scope.data.state] }}
         </div>
       </template>
-    </c-comment>
+    </c-feed>
   </div>
 </template>
 
 <script>
-import Comment from "@/components/comm/Comment";
+import Feed from "@/components/comm/Feed/index";
 import BBanner from "./banner";
 import BSearch from "./search";
 export default {
   components: {
-    "c-comment": Comment,
+    "c-feed": Feed,
     "b-banner": BBanner,
     "b-search": BSearch
   },

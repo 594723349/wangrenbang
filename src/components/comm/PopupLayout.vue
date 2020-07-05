@@ -50,6 +50,7 @@ export default {
   line-height: 40px;
   text-align: center;
   background-color: #e4e7ed;
+  font-size: 14px;
   .van-icon {
     position: absolute;
     left: 5px;
