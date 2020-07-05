@@ -6,8 +6,8 @@
     </div>
     <div class="body">
       <template v-if="tabs.length">
-        <van-tabs v-model="activeName">
-          <van-tab v-for="(name, index) in tabs" :key="index" :title="name">{{ name }}</van-tab>
+        <van-tabs v-model="activeName" @change="handleClick">
+          <van-tab v-for="(tab, index) in tabs" :key="index" :name="tab.name" :title="tab.title"></van-tab>
         </van-tabs>
       </template>
       <slot></slot>
@@ -37,8 +37,7 @@ export default {
       this.$emit("back");
     },
     handleClick(name) {
-      console.log(name);
-      this.$emit("change");
+      this.$emit("change", name);
     }
   }
 };
@@ -57,5 +56,8 @@ export default {
     top: 50%;
     transform: translateY(-50%);
   }
+}
+.body {
+  min-height: calc(100vh - 40px);
 }
 </style>
