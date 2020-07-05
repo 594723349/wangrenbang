@@ -160,13 +160,13 @@ export default {
   font-size: 14px;
   margin: 25px 0 10px 0;
   & > div {
-    margin-right: 30px;
+    margin-right: 40px;
   }
   img {
     width: 15px;
     vertical-align: middle;
     margin-right: 5px;
-    margin-top: -2px;
+    margin-top: -4px;
   }
 }
 </style>
