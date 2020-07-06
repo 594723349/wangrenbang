@@ -4,20 +4,28 @@
     <c-tab :tabs="tabs" :active.sync="tabActiveIndex">
       <component :is="currentComponent"></component>
     </c-tab>
+    <div class="add-message">
+      <img src="@/assets/img/edit-article.png" />
+      <div @click="openMessage">发帖</div>
+    </div>
+    <b-message ref="message"></b-message>
   </div>
 </template>
 
 <script>
 import Menu from "@/components/comm/Header";
 import Tab from "@/components/comm/Tab";
+import Bmessage from "@/components/business/message";
 import Resource from "./components/resource";
 import Welfare from "./components/welfare";
 import About from "./components/about";
+
 export default {
   name: "ServiceIndex",
   components: {
     "c-menu": Menu,
-    "c-tab": Tab
+    "c-tab": Tab,
+    "b-message": Bmessage
   },
   data() {
     return {
@@ -47,8 +55,30 @@ export default {
       return Resource;
     }
   },
-  methods: {}
+  methods: {
+    openMessage() {
+      this.$refs.message.open();
+    }
+  }
 };
 </script>
 
-<style></style>
+<style lang="less" scoped>
+.add-message {
+  position: fixed;
+  right: 20px;
+  bottom: 50px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 12px;
+  color: #2892ee;
+  background-color: rgb(255, 193, 7);
+  padding-top: 5px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  img {
+    width: 20px;
+  }
+}
+</style>
