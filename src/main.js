@@ -3,7 +3,21 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import { Form, FormItem, Button as ElButton, Input, Checkbox } from "element-ui";
-import { Popup, Stepper, Button, List, Icon, Tab, Tabs, Field, Notify, Uploader } from "vant";
+import {
+  Popup,
+  Stepper,
+  Button,
+  List,
+  Icon,
+  Tab,
+  Tabs,
+  Field,
+  Notify,
+  Uploader,
+  Sidebar,
+  SidebarItem,
+  Card
+} from "vant";
 import fetch from "@/utils/fetch";
 import "./assets/styles/reset.less";
 import "element-ui/lib/theme-chalk/index.css";
@@ -27,6 +41,9 @@ Vue.use(Tabs);
 Vue.use(Field);
 Vue.use(Notify);
 Vue.use(Uploader);
+Vue.use(Sidebar);
+Vue.use(SidebarItem);
+Vue.use(Card);
 
 Vue.prototype.$fetch = fetch;
 Vue.config.productionTip = false;

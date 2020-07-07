@@ -4,7 +4,7 @@
       <template v-for="(item, index) in data">
         <feed :key="index" :data="item" @detail="openDetail">
           <template v-slot="{ data }">
-            <slot v-bind:data="data"></slot>
+            <slot v-bind:data="data" :index="index"></slot>
           </template>
         </feed>
       </template>

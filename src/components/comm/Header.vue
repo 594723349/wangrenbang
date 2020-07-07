@@ -60,7 +60,7 @@ export default {
     width: 33.3%;
     background-color: rgba(204, 204, 204, 1);
     &.active {
-      font-size: 22px;
+      font-size: 18px;
       font-weight: 600;
       .label {
         position: relative;
