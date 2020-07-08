@@ -49,6 +49,17 @@
         >
         </el-date-picker>
       </template>
+      <!-- 日期 -->
+      <template v-if="formItem.type === 'select'">
+        <el-select v-model="data[formItem.prop]" :placeholder="formItem.placeholder">
+          <el-option
+            v-for="(option, key) in formItem.data"
+            :key="key"
+            :label="option.label"
+            :value="option.value"
+          ></el-option>
+        </el-select>
+      </template>
       <!-- 操作 -->
       <template v-if="formItem.type === 'action'">
         <div class="btn-group" :style="{ 'text-align': formItem.position || 'center' }">

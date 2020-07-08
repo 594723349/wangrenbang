@@ -5,12 +5,13 @@
     :safe-area-inset-bottom="true"
     :close-on-click-overlay="type === 'money'"
     :class="{ 'is-money': type === 'money' }"
+    :duration="duration"
   >
     <template v-if="type === 'money'">
       <b-money></b-money>
     </template>
     <template v-else>
-      <c-popup-layout :title="title" @back="visible = false" :tabs="tabs" @change="tabChange">
+      <c-popup-layout :title="title" @back="back" :tabs="tabs" @change="tabChange">
         <b-explain v-if="type === 'explain'"></b-explain>
         <b-project v-if="type === 'project'" :type="currentTab"></b-project>
       </c-popup-layout>
@@ -36,7 +37,9 @@ export default {
       type: "",
       tabs: [],
       position: "right",
-      currentTab: "all"
+      currentTab: "all",
+      duration: "0.3",
+      backCb: null
     };
   },
   computed: {
@@ -53,6 +56,8 @@ export default {
       this.type = config.type;
       this.tabs = config.tabs || [];
       this.position = config.position || "right";
+      this.duration = config.duration || "0.3";
+      this.backCb = config.back || null;
       this.visible = true;
     },
     close() {
@@ -60,6 +65,13 @@ export default {
     },
     tabChange(name) {
       this.currentTab = name;
+    },
+    back() {
+      if (typeof this.backCb === "function") {
+        this.backCb(this.close);
+      } else {
+        this.close();
+      }
     }
   }
 };

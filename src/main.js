@@ -2,7 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-import { Form, FormItem, Button as ElButton, Input, Checkbox } from "element-ui";
+import { Form, FormItem, Button as ElButton, Input, Checkbox, Select, Option } from "element-ui";
 import {
   Popup,
   Stepper,
@@ -44,6 +44,8 @@ Vue.use(Uploader);
 Vue.use(Sidebar);
 Vue.use(SidebarItem);
 Vue.use(Card);
+Vue.use(Select);
+Vue.use(Option);
 
 Vue.prototype.$fetch = fetch;
 Vue.config.productionTip = false;

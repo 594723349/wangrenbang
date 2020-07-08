@@ -7,6 +7,9 @@ const PlanIndex = () => import(/* webpackChunkName: "about" */ "@/views/Plan/ind
 const PersonalIndex = () => import(/* webpackChunkName: "about" */ "@/views/Personal/index.vue");
 const PersonalFans = () => import(/* webpackChunkName: "about" */ "@/views/Personal/fans.vue");
 const PersonalFollow = () => import(/* webpackChunkName: "about" */ "@/views/Personal/follow.vue");
+const PersonalHistory = () => import(/* webpackChunkName: "about" */ "@/views/Personal/history.vue");
+const PersonalSafe = () => import(/* webpackChunkName: "about" */ "@/views/Personal/safe.vue");
+const PersonalProject = () => import(/* webpackChunkName: "about" */ "@/views/Personal/project.vue");
 PersonalFollow;
 Vue.use(VueRouter);
 
@@ -41,6 +44,21 @@ const routes = [
     path: "/personal/follow",
     component: PersonalFollow,
     name: "PersonalFollow"
+  },
+  {
+    path: "/personal/history",
+    component: PersonalHistory,
+    name: "PersonalHistory"
+  },
+  {
+    path: "/personal/safe",
+    component: PersonalSafe,
+    name: "PersonalSafe"
+  },
+  {
+    path: "/personal/project",
+    component: PersonalProject,
+    name: "PersonalProject"
   }
   // {
   //   path: '/about',

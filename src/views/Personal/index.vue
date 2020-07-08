@@ -25,9 +25,9 @@
         <van-sidebar v-model="activeKey">
           <van-sidebar-item title="粉丝" to="/personal/fans" />
           <van-sidebar-item title="收藏/关注/动态" to="/personal/follow" />
-          <van-sidebar-item title="历史记录" />
-          <van-sidebar-item title="账户管理" />
-          <van-sidebar-item title="项目中心" />
+          <van-sidebar-item title="历史记录" to="/personal/history" />
+          <van-sidebar-item title="账户管理" to="/personal/safe" />
+          <van-sidebar-item title="项目中心" to="/personal/project" />
           <van-sidebar-item title="消息中心" badge="99+" />
           <van-sidebar-item title="用户协议" />
           <van-sidebar-item title="在线客服" />
