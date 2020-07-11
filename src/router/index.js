@@ -1,16 +1,17 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
-const Login = () => import(/* webpackChunkName: "about" */ "@/views/Login.vue");
-const ServiceIndex = () => import(/* webpackChunkName: "about" */ "@/views/Service/index.vue");
-const PlanIndex = () => import(/* webpackChunkName: "about" */ "@/views/Plan/index.vue");
-const PersonalIndex = () => import(/* webpackChunkName: "about" */ "@/views/Personal/index.vue");
-const PersonalFans = () => import(/* webpackChunkName: "about" */ "@/views/Personal/fans.vue");
-const PersonalFollow = () => import(/* webpackChunkName: "about" */ "@/views/Personal/follow.vue");
-const PersonalHistory = () => import(/* webpackChunkName: "about" */ "@/views/Personal/history.vue");
-const PersonalSafe = () => import(/* webpackChunkName: "about" */ "@/views/Personal/safe.vue");
-const PersonalProject = () => import(/* webpackChunkName: "about" */ "@/views/Personal/project.vue");
-PersonalFollow;
+const Login = () => import("@/views/Login.vue");
+const ServiceIndex = () => import("@/views/Service/index.vue");
+const PlanIndex = () => import("@/views/Plan/index.vue");
+const PersonalIndex = () => import("@/views/Personal/index.vue");
+const PersonalFans = () => import("@/views/Personal/fans.vue");
+const PersonalFollow = () => import("@/views/Personal/follow.vue");
+const PersonalHistory = () => import("@/views/Personal/history.vue");
+const PersonalSafe = () => import("@/views/Personal/safe.vue");
+const PersonalProject = () => import("@/views/Personal/project.vue");
+const PersonalMessage = () => import("@/views/Personal/message.vue");
+const PersonalAgreement = () => import("@/views/Personal/agreement.vue");
 Vue.use(VueRouter);
 
 const routes = [
@@ -59,6 +60,16 @@ const routes = [
     path: "/personal/project",
     component: PersonalProject,
     name: "PersonalProject"
+  },
+  {
+    path: "/personal/message",
+    component: PersonalMessage,
+    name: "PersonalMessage"
+  },
+  {
+    path: "/personal/agreement",
+    component: PersonalAgreement,
+    name: "PersonalAgreement"
   }
   // {
   //   path: '/about',
@@ -66,7 +77,7 @@ const routes = [
   //   // route level code-splitting
   //   // this generates a separate chunk (about.[hash].js) for this route
   //   // which is lazy-loaded when the route is visited.
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+  //   component: () => import( '../views/About.vue')
   // }
 ];
 

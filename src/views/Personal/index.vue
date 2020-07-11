@@ -15,8 +15,8 @@
           <span>154,211.00</span>
         </div>
         <div class="operation">
-          <div class="btn recharge-btn">充值</div>
-          <div class="btn withdraw-btn">提现</div>
+          <div class="btn recharge-btn" @click="recharge">充值</div>
+          <div class="btn withdraw-btn" @click="withdraw">提现</div>
         </div>
       </div>
     </div>
@@ -28,10 +28,10 @@
           <van-sidebar-item title="历史记录" to="/personal/history" />
           <van-sidebar-item title="账户管理" to="/personal/safe" />
           <van-sidebar-item title="项目中心" to="/personal/project" />
-          <van-sidebar-item title="消息中心" badge="99+" />
-          <van-sidebar-item title="用户协议" />
+          <van-sidebar-item title="消息中心" to="/personal/message" badge="99+" />
+          <van-sidebar-item title="用户协议" to="/personal/agreement" />
           <van-sidebar-item title="在线客服" />
-          <van-sidebar-item title="退出登录" />
+          <van-sidebar-item title="退出登录" @click="loginOut" />
         </van-sidebar>
         <div class="glob-box">
           <p class="name">--金币--</p>
@@ -58,14 +58,20 @@
         </div>
       </div>
     </div>
+    <b-recharge ref="recharge"></b-recharge>
+    <b-withdraw ref="withdraw"></b-withdraw>
   </div>
 </template>
 
 <script>
 import Menu from "@/components/comm/Header";
+import BRecharge from "@/components/business/recharge";
+import BWithdraw from "@/components/business/withdraw";
 export default {
   components: {
-    "c-menu": Menu
+    "c-menu": Menu,
+    "b-recharge": BRecharge,
+    "b-withdraw": BWithdraw
   },
   data() {
     return {
@@ -91,6 +97,15 @@ export default {
         this.messageList = this.messageList.concat(copy);
         this.loading = false;
       }, 200);
+    },
+    loginOut() {
+      this.$router.push({ name: "Login" });
+    },
+    recharge() {
+      this.$refs.recharge.open();
+    },
+    withdraw() {
+      this.$refs.withdraw.open();
     }
   }
 };

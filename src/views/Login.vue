@@ -182,15 +182,17 @@ export default {
       console.log(valid, data);
     },
     toLogin(data) {
-      this.$fetch
-        .post("/login", data)
-        .then(({ data }) => {
-          console.log(data);
-          this.$store.commit("UPDATE_LOADING", false);
-        })
-        .catch(() => {
-          this.$store.commit("UPDATE_LOADING", false);
-        });
+      console.log(data);
+      this.$router.push({ name: "Plan" });
+      // this.$fetch
+      //   .post("/login", data)
+      //   .then(({ data }) => {
+      //     console.log(data);
+      //     this.$store.commit("UPDATE_LOADING", false);
+      //   })
+      //   .catch(() => {
+      //     this.$store.commit("UPDATE_LOADING", false);
+      //   });
     },
     toRegister(data) {
       this.$fetch

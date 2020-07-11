@@ -25,7 +25,11 @@
           :type="formItem.type === 'input' ? 'text' : formItem.type"
           :placeholder="formItem.placeholder"
           autocomplete="new-password"
-        ></el-input>
+        >
+          <template v-if="formItem.unit" #suffix>
+            {{ formItem.unit }}
+          </template>
+        </el-input>
       </template>
       <!-- 单选框 -->
       <template v-if="formItem.type === 'radio'">
@@ -146,12 +150,16 @@ export default {
      * 校验
      */
     validator(buttonItem) {
-      this.$refs.form.validate(valid => {
-        if (valid) {
-          let data = JSON.parse(JSON.stringify(this.data));
-          typeof buttonItem.handler === "function" && buttonItem.handler(valid, data);
-        }
-      });
+      if (typeof buttonItem.validator !== "undefined" && !buttonItem.validator) {
+        typeof buttonItem.handler === "function" && buttonItem.handler();
+      } else {
+        this.$refs.form.validate(valid => {
+          if (valid) {
+            let data = JSON.parse(JSON.stringify(this.data));
+            typeof buttonItem.handler === "function" && buttonItem.handler(valid, data);
+          }
+        });
+      }
     },
     /**
      * 校验是否开启极验证
