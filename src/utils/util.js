@@ -96,3 +96,21 @@ export function accDivCoupon(arg1, arg2) {
 export function getNumber(str) {
   return str.replace(/[^a-zA-Z]/g, "");
 }
+export const session = {
+  get(key) {
+    const value = sessionStorage.getItem(key);
+    if (value) {
+      return JSON.parse(value);
+    }
+    return undefined;
+  },
+  set(key, value) {
+    return sessionStorage.setItem(key, JSON.stringify(value));
+  },
+  remove(key) {
+    sessionStorage.removeItem(key);
+  },
+  clear() {
+    sessionStorage.clear();
+  }
+};

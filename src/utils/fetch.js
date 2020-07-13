@@ -1,5 +1,4 @@
 import axios from "axios";
-import { Message } from "element-ui";
 const baseURL = "";
 const instance = axios.create({
   baseURL,
@@ -16,12 +15,9 @@ instance.interceptors.response.use(
   response => {
     const data = response.data;
     switch (data.code) {
-      case 200:
+      case 0:
         return Promise.resolve(data);
       default:
-        if (data.msg) {
-          Message.warning(data.msg, 2);
-        }
         return Promise.reject({ ...data, msg: data.msg });
     }
   },

@@ -94,8 +94,8 @@ export default {
         nickname: "",
         username: "",
         password: "",
-        confirmPassword: "",
-        referralCode: ""
+        password2: ""
+        // referralCode: ""
       },
       registerColumn: [
         {
@@ -115,14 +115,14 @@ export default {
         },
         {
           type: "password",
-          prop: "confirmPassword",
+          prop: "password2",
           placeholder: "确认密码"
         },
-        {
-          type: "input",
-          prop: "referralCode ",
-          placeholder: "推荐码"
-        },
+        // {
+        //   type: "input",
+        //   prop: "referralCode ",
+        //   placeholder: "推荐码"
+        // },
         {
           type: "slot",
           prop: "after"
@@ -143,12 +143,12 @@ export default {
           { required: true, message: "手机号不能为空", trigger: "blur" },
           {
             validator: this.validatePhone,
-            message: "手机号不能为空",
+            message: "手机号格式不正确",
             trigger: "blur"
           }
         ],
         password: [{ required: true, message: "密码不能为空", trigger: "blur" }],
-        confirmPassword: [{ validator: this.validatePwd, trigger: "blur" }]
+        password2: [{ validator: this.validatePwd, message: "两次密码不一致", trigger: "blur" }]
       },
       checked: false
     };
@@ -179,29 +179,43 @@ export default {
             break;
         }
       }
-      console.log(valid, data);
     },
     toLogin(data) {
-      console.log(data);
-      this.$router.push({ name: "Plan" });
-      // this.$fetch
-      //   .post("/login", data)
-      //   .then(({ data }) => {
-      //     console.log(data);
-      //     this.$store.commit("UPDATE_LOADING", false);
-      //   })
-      //   .catch(() => {
-      //     this.$store.commit("UPDATE_LOADING", false);
-      //   });
+      this.$fetch
+        .get("/appUser/login", data)
+        .then(({ msg }) => {
+          this.$notify({ type: "success", message: "登录成功" });
+          this.$store.dispatch("SaveInfo", {
+            token: msg
+          });
+          this.$store.commit("UPDATE_LOADING", false);
+          this.$router.push({ name: "Plan" });
+        })
+        .catch(({ msg }) => {
+          this.$notify({ type: "warning", message: msg });
+          this.$store.commit("UPDATE_LOADING", false);
+        });
     },
     toRegister(data) {
       this.$fetch
-        .post("/register", data)
-        .then(({ data }) => {
-          console.log(data);
-          this.$store.commit("UPDATE_LOADING", false);
+        .post("/appUser/findAppUserByNameOrId", {
+          username: data.username
         })
-        .catch(() => {
+        .then(() => {
+          this.$fetch
+            .get("/appUser/addAppUser", data)
+            .then(() => {
+              this.$notify({ type: "success", message: "注册成功" });
+              this.switchType("login");
+              this.$store.commit("UPDATE_LOADING", false);
+            })
+            .catch(({ msg }) => {
+              this.$notify({ type: "warning", message: msg });
+              this.$store.commit("UPDATE_LOADING", false);
+            });
+        })
+        .catch(({ msg }) => {
+          this.$notify({ type: "warning", message: msg });
           this.$store.commit("UPDATE_LOADING", false);
         });
     },

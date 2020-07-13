@@ -11,6 +11,15 @@ module.exports = {
         plugins: [postcss]
       }
     }
+  },
+  devServer: {
+    proxy: {
+      "/": {
+        target: "http://47.114.151.253:8088/",
+        ws: false,
+        changeOrigin: true
+      }
+    }
   }
   // ... 更多其他代码
 };
