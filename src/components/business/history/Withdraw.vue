@@ -3,10 +3,10 @@
     <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
       <div v-for="(item, index) in data" :key="index" class="history-item">
         <div class="ceil"><span style="color:#E91E63;">l</span>提现金额：{{ item.money }}元</div>
-        <div class="ceil"><span style="color:#5AB963;">l</span>提现状态：{{ item.state }}</div>
         <div class="ceil">
-          <span style="color:#169BD5;">l</span>提现时间：{{ item.date }}&nbsp;&nbsp;{{ item.time }}
+          <span style="color:#5AB963;">l</span>提现状态：{{ getState(item.operateStatus) }}
         </div>
+        <div class="ceil"><span style="color:#169BD5;">l</span>提现时间：{{ item.createTime }}</div>
       </div>
     </van-list>
   </div>
@@ -18,37 +18,46 @@ export default {
     return {
       finished: false,
       loading: false,
-      data: [
-        {
-          money: 3333,
-          state: "已处理",
-          date: "2020年2月8号",
-          time: "18:56:08"
-        },
-        {
-          money: 1234,
-          state: "未处理",
-          date: "2020年2月8号",
-          time: "18:56:08"
-        },
-        {
-          money: 3333,
-          state: "已处理",
-          date: "2020年2月8号",
-          time: "18:56:08"
-        }
-      ]
+      data: [],
+      params: {
+        start: 0,
+        size: 10,
+        type: 1
+      }
     };
   },
+  created() {
+    this.getData();
+  },
   methods: {
-    getData() {
-      const copy = [].concat(this.data);
-      this.data = this.data.concat(copy);
-      this.done();
+    getData(params = this.params) {
+      this.loading = true;
+      this.$fetch
+        .get("/appMoneyRecord/findAllAppMoneyRecord", {
+          ...params,
+          token: this.token
+        })
+        .then(({ data }) => {
+          this.data = data;
+          this.done(data.length < this.params.size);
+        })
+        .catch(({ msg }) => {
+          this.$notify({ type: "warning", message: msg });
+          this.done(true);
+        });
     },
     onLoad() {
-      this.loading = true;
-      this.getData();
+      this.getData({
+        start: this.params.start + 1
+      });
+    },
+    getState(state) {
+      const map = {
+        0: "提现中",
+        1: "提现成功",
+        2: "提现失败"
+      };
+      return map[state];
     },
     done(isFinsh = false) {
       this.finished = isFinsh;

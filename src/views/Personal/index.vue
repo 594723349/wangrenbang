@@ -47,11 +47,11 @@
                 <img class="avatar" :src="message.logo" alt="" />
               </div>
               <div class="message-info">
-                <p class="title">{{ message.title }}</p>
+                <p class="title">{{ message.msgTitle }}</p>
                 <p>
-                  {{ message.msg }}
+                  {{ message.content }}
                 </p>
-                <p>{{ message.date }}&nbsp;&nbsp;&nbsp;&nbsp;{{ message.time }}</p>
+                <p>{{ message.createTime }}</p>
               </div>
             </div>
           </van-list>
@@ -76,27 +76,40 @@ export default {
   data() {
     return {
       activeKey: 0,
-      messageList: [
-        {
-          logo: require("@/assets/img/avatar.jpg"),
-          title: "系统通知1",
-          msg: "这是官方发布的系统消息的苏联空军噶卢卡斯经过了卡就是离开",
-          date: "2020年2月8号",
-          time: "18:45:26"
-        }
-      ],
+      messageList: [],
+      params: {
+        start: 0,
+        size: 10
+      },
       loading: false,
       finished: false
     };
   },
+  created() {
+    this.getMessageList();
+  },
   methods: {
-    onLoad() {
+    getMessageList(params = this.params) {
       this.loading = true;
-      const copy = [].concat(this.messageList);
-      setTimeout(() => {
-        this.messageList = this.messageList.concat(copy);
-        this.loading = false;
-      }, 200);
+      this.$fetch
+        .get("/appMessage/findAllAppMessage", {
+          ...params,
+          token: this.token
+        })
+        .then(({ data }) => {
+          this.finished = data.length < this.params.size;
+          this.messageList = data;
+          this.loading = false;
+        })
+        .catch(({ msg }) => {
+          this.$notify({ type: "warning", message: msg });
+          this.loading = false;
+        });
+    },
+    onLoad() {
+      this.getData({
+        start: this.params.start + 1
+      });
     },
     loginOut() {
       this.$router.push({ name: "Login" });
