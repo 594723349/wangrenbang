@@ -18,26 +18,7 @@ export default {
     return {
       finished: false,
       loading: false,
-      data: [
-        {
-          money: 3333,
-          state: "已处理",
-          date: "2020年2月8号",
-          time: "18:56:08"
-        },
-        {
-          money: 1234,
-          state: "未处理",
-          date: "2020年2月8号",
-          time: "18:56:08"
-        },
-        {
-          money: 3333,
-          state: "已处理",
-          date: "2020年2月8号",
-          time: "18:56:08"
-        }
-      ],
+      data: [],
       params: {
         start: 0,
         size: 10,

@@ -14,10 +14,13 @@ module.exports = {
   },
   devServer: {
     proxy: {
-      "/": {
+      "/api": {
         target: "http://47.114.151.253:8088/",
         ws: false,
-        changeOrigin: true
+        changeOrigin: true,
+        pathRewrite: {
+          "/api": "/"
+        }
       }
     }
   }
