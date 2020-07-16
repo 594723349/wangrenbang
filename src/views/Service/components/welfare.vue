@@ -1,6 +1,6 @@
 <template>
   <div class="service-welfare">
-    <b-banner text="能帮一个事一个" bg-color="rgba(255, 153, 0, 1)"></b-banner>
+    <b-banner text="能帮一个事一个" bg-color="rgba(59, 172, 106, 0.8)"></b-banner>
     <b-search @change="handleSearch"></b-search>
     <c-feed :data="commentList" @load="load">
       <template v-slot="scope">
@@ -96,9 +96,9 @@ export default {
 
 <style lang="less" scoped>
 .state {
-  width: 50px;
-  height: 20px;
-  line-height: 20px;
+  width: 60px;
+  height: 25px;
+  line-height: 25px;
   text-align: center;
   border-radius: 10px;
   font-size: 12px;

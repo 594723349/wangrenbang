@@ -59,9 +59,11 @@ export default {
     flex: 1;
     width: 33.3%;
     background-color: rgba(204, 204, 204, 1);
+    color: #666666;
     &.active {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 600;
+      color: #333333;
       .label {
         position: relative;
         &::before,

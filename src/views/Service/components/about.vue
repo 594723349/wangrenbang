@@ -1,6 +1,6 @@
 <template>
   <div class="service-about">
-    <b-banner text="一切为了用户，一切依靠用户" bg-color="rgba(245, 109, 145, 0.7)"></b-banner>
+    <b-banner text="一切为了用户，一切依靠用户" bg-color="rgba(59, 172, 106, 0.8)"></b-banner>
     <div class="about-item plan-detail" @click="handleOpenPopup('explain')">聚合联创计划说明</div>
     <div class="about-item project-money" @click="handleOpenPopup('money')">
       <div class="title">项目启动资金</div>

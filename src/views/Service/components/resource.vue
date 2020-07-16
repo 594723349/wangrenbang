@@ -1,6 +1,6 @@
 <template>
   <div class="service-resource">
-    <b-banner text="全心全意为用户服务" bg-color="rgba(59, 172, 106, 0.8"></b-banner>
+    <b-banner text="全心全意为用户服务" bg-color="rgba(59, 172, 106, 0.8)"></b-banner>
     <b-search @change="handleSearch"></b-search>
     <c-feed :data="commentList" @load="load">
       <template v-slot="scope">
@@ -102,19 +102,19 @@ export default {
 
 <style lang="less" scoped>
 .state {
-  width: 50px;
-  height: 20px;
-  line-height: 20px;
+  width: 60px;
+  height: 25px;
+  line-height: 25px;
   text-align: center;
-  border-radius: 10px;
+  border-radius: 25px;
   font-size: 12px;
   color: #fff;
 }
 .state-0 {
-  background-color: rgb(90, 185, 99);
+  background-color: #ec7259;
 }
 .state-1 {
-  background-color: #ec7259;
+  background-color: #5ab963;
 }
 .state-2 {
   background-color: rgba(255, 153, 0, 1);

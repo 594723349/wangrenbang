@@ -104,10 +104,11 @@ export default {
         .catch(({ msg }) => {
           this.$notify({ type: "warning", message: msg });
           this.loading = false;
+          this.finished = true;
         });
     },
     onLoad() {
-      this.getData({
+      this.getMessageList({
         start: this.params.start + 1
       });
     },
