@@ -81,4 +81,12 @@ export default {
     width: 20px;
   }
 }
+/deep/ .c-tab {
+  .tab-item {
+    color: #999999;
+  }
+  .tab-item.active {
+    color: #6d75f1;
+  }
+}
 </style>

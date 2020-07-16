@@ -16,7 +16,8 @@ import {
   Uploader,
   Sidebar,
   SidebarItem,
-  Card
+  Card,
+  Form as VantForm
 } from "vant";
 import fetch from "@/utils/fetch";
 import "./assets/styles/reset.less";
@@ -46,6 +47,7 @@ Vue.use(SidebarItem);
 Vue.use(Card);
 Vue.use(Select);
 Vue.use(Option);
+Vue.use(VantForm);
 
 Vue.prototype.$fetch = fetch;
 Vue.config.productionTip = false;

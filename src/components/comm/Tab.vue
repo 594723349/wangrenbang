@@ -4,7 +4,7 @@
       <li
         v-for="(tab, index) in tabs"
         :key="index"
-        :class="{ active: index === active, ['tab-' + index]: index }"
+        :class="{ active: index === active, ['tab-' + index]: index >= 0 }"
         class="tab-item"
         @click="change(index)"
       >

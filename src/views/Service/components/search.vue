@@ -1,26 +1,25 @@
 <template>
   <div class="service-search">
-    <div v-show="!isSearch" class="tabs-box">
-      <van-tabs v-model="active" @change="tabChange">
-        <van-tab title="最新" name="new"></van-tab>
-        <van-tab title="最热" name="hot"></van-tab>
-        <van-tab title="关注" name="follow"></van-tab>
-      </van-tabs>
+    <div class="content">
+      <div v-show="!isSearch" class="tabs-box">
+        <van-tabs v-model="active" @change="tabChange">
+          <van-tab title="最新" name="new"></van-tab>
+          <van-tab title="最热" name="hot"></van-tab>
+          <van-tab title="关注" name="follow"></van-tab>
+        </van-tabs>
+      </div>
       <van-icon class="search-icon" name="search" color="#CCCCCC" size="16px" @click="handleSearchVisible" />
     </div>
-    <div v-show="isSearch" class="search-box">
-      <van-field v-model="searchValue" placeholder="搜索" :center="true">
-        <template #button>
-          <van-icon class="file-search-btn" name="search" color="#CCCCCC" size="16px" @click="searchChange" />
-        </template>
-      </van-field>
-      <van-icon class="close-search" name="cross" size="16px" @click="handleSearchVisible(false)" />
-    </div>
+    <b-search ref="search"></b-search>
   </div>
 </template>
 
 <script>
+import BSearch from "@/components/business/search";
 export default {
+  components: {
+    "b-search": BSearch
+  },
   data() {
     return {
       active: "new",
@@ -29,8 +28,8 @@ export default {
     };
   },
   methods: {
-    handleSearchVisible(visible = true) {
-      this.isSearch = visible;
+    handleSearchVisible() {
+      this.$refs.search.open();
     },
     tabChange(name) {
       this.$emit("change", {
@@ -49,24 +48,14 @@ export default {
 
 <style lang="less" scoped>
 .service-search {
-  position: relative;
   height: 40px;
 }
 .tabs-box {
-  width: 200px;
+  width: 150px;
   margin: auto;
 }
-.search-box {
+.content {
   position: relative;
-  width: 200px;
-  margin: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 5px;
-  /deep/ .van-cell {
-    padding: 0 5px;
-  }
 }
 .search-icon {
   position: absolute;
@@ -77,6 +66,17 @@ export default {
 /deep/ .van-tabs {
   .van-tabs__wrap {
     height: 35px;
+  }
+  .van-tab {
+    color: #999999;
+    font-size: 14px;
+  }
+  .van-tab--active {
+    font-weight: 700;
+  }
+  .van-tabs__line {
+    background-color: #000;
+    height: 1px;
   }
   [class*="van-hairline"]::after {
     border: none;

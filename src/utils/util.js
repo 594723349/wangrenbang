@@ -114,3 +114,13 @@ export const session = {
     sessionStorage.clear();
   }
 };
+
+export function debounce(fn, delay = 500) {
+  var timer = null;
+  return function() {
+    if (timer !== null) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(fn, delay);
+  };
+}
