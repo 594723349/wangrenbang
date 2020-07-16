@@ -1,7 +1,7 @@
 <template>
   <div class="c-countdown">
     <template v-if="type === 'block'">
-      <span v-for="(num, index) in timeTxt" :key="index" class="item" :class="{ 'is-num': num !== ':' }">
+      <span v-for="(num, index) in timeTxt" :key="index" class="item" :class="{ 'is-num': num !== ':', 'is-t': num === ':' }">
         {{ num }}
       </span>
     </template>
@@ -101,5 +101,8 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.is-t{
+  margin: 0 5px;
 }
 </style>

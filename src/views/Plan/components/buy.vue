@@ -34,9 +34,11 @@
       </div>
       <div class="section-body rules">
         <div class="rule-item">
-          <span style="color:#E91E63;">l</span>
-          <span style="color:#FFC107;">l</span>圆梦三部曲<span style="color:#2892EE;">l</span>
-          <span style="color:#5AB963;">l</span>
+          <div>
+            <span style="color:#E91E63;">l</span>
+            <span style="color:#FFC107;">l</span>圆梦三部曲<span style="color:#2892EE;">l</span>
+            <span style="color:#5AB963;">l</span>
+          </div>
         </div>
         <div class="rule-item">
           <div><span style="color:#2892EE;">l</span>第一步：赞赏幸运锦鲤免费获取金币</div>
@@ -55,7 +57,7 @@
           </p>
         </div>
         <div class="rule-item">
-          <div>
+          <div class="font-20">
             <span style="color:#FFC107;">l</span>
             <span style="color:#5AB963;">l</span>幸运号码计算公式：[ (A+B) /C ] 取余数+10000001<span
               style="color:#E91E63;"
@@ -101,6 +103,9 @@
           <div><span style="color:#FFC107;">l</span>B=11232;</div>
         </div>
       </div>
+    </div>
+    <div class="message">
+      公平<span style="color:#FFC107;">l</span>公正<span style="color:#2892EE;">l</span>公开
     </div>
     <van-popup
       v-model="buyPopupVisible"
@@ -167,7 +172,7 @@ export default {
 
 <style lang="less" scoped>
 .section {
-  padding: 20px 30px;
+  padding: 20px 20px;
 }
 .section-2 .section-title {
   font-size: 16px;
@@ -216,7 +221,7 @@ export default {
     font-size: 16px;
   }
   .bar-item {
-    width: 20px;
+    width: 31px;
     height: 300px;
     color: #fff;
     position: relative;
@@ -261,9 +266,9 @@ export default {
 }
 .bar-footer {
   background-color: rgba(252, 140, 168, 1);
-  border-radius: 30px;
-  height: 30px;
-  line-height: 30px;
+  border-radius: 31px;
+  height: 31px;
+  line-height: 31px;
   display: flex;
   justify-content: space-between;
   color: rgb(152, 95, 109);
@@ -292,6 +297,7 @@ export default {
   margin: auto;
   margin-top: 30px;
   font-size: 16px;
+  border-radius: 50px;
 }
 .rules {
   text-align: left;
@@ -299,9 +305,16 @@ export default {
     margin-bottom: 20px;
     & > div {
       font-weight: 700;
+      font-size: 15px;
+      color: #333;
+      &.font-20 {
+        font-size: 16px;
+      }
     }
     p {
       color: rgb(172, 172, 172);
+      font-size: 14px;
+      color: #999;
     }
   }
 }
@@ -326,6 +339,9 @@ export default {
 /deep/ .van-popup {
   padding: 10px;
   font-size: 14px;
+  .van-stepper {
+    margin: 0 5px;
+  }
   .my-gold {
     text-align: left;
     margin-bottom: 10px;
@@ -355,6 +371,15 @@ export default {
   .van-button {
     width: 100px;
     margin: 0 5px;
+  }
+}
+.message {
+  padding-bottom: 20px;
+  font-weight: bold;
+  font-size: 24px;
+  color: #333;
+  span {
+    margin: 0 10px;
   }
 }
 </style>
