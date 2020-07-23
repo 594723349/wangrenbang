@@ -25,9 +25,9 @@ export default new Vuex.Store({
   },
   actions: {
     SaveInfo({ commit }, { token = null }) {
-      console.log(token);
-      commit("SET_TOKEN", 1);
-      session.set("token", 1);
+      // console.log(token);
+      commit("SET_TOKEN", token);
+      session.set("token", token);
     },
     ClearInfo({ commit }) {
       // 清空缓存

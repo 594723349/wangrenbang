@@ -1,4 +1,5 @@
 import axios from "axios";
+import { session } from "./util";
 const baseURL = "/api";
 const instance = axios.create({
   baseURL,
@@ -8,7 +9,7 @@ const instance = axios.create({
 instance.__proto__ = axios;
 
 instance.interceptors.request.use(config => {
-  // config.headers['token'] = session.get('token');
+  config.headers["Authorization"] = session.get("token");
   return config;
 });
 instance.interceptors.response.use(
