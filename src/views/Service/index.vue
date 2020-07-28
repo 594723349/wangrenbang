@@ -4,7 +4,7 @@
     <c-tab :tabs="tabs" :active.sync="tabActiveIndex">
       <component :is="currentComponent"></component>
     </c-tab>
-    <div class="add-message">
+    <div class="add-message" v-if="tabActiveIndex !== 1">
       <img src="@/assets/img/edit-article.png" />
       <div @click="openMessage">发帖</div>
     </div>
@@ -35,7 +35,7 @@ export default {
           label: "资源共享"
         },
         {
-          label: "每日福利"
+          label: "卡片商城"
         },
         {
           label: "聚合联创"
