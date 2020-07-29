@@ -65,18 +65,20 @@ export default {
 }
 /deep/ .van-tabs {
   .van-tabs__wrap {
-    height: 35px;
+    height: 20px;
   }
   .van-tab {
-    color: #999999;
-    font-size: 14px;
+    color: rgb(135, 135, 135);
+    font-size: 10px;
   }
   .van-tab--active {
+    color: #333333;
     font-weight: 700;
   }
   .van-tabs__line {
-    background-color: #000;
+    background-color: rgb(135, 135, 135);
     height: 1px;
+    width: 0.5rem !important;
   }
   [class*="van-hairline"]::after {
     border: none;

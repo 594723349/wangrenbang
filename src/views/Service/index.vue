@@ -4,9 +4,9 @@
     <c-tab :tabs="tabs" :active.sync="tabActiveIndex">
       <component :is="currentComponent"></component>
     </c-tab>
-    <div class="add-message" v-if="tabActiveIndex !== 1">
+    <div class="add-message" v-if="tabActiveIndex !== 1" @click="openMessage">
       <img src="@/assets/img/edit-article.png" />
-      <div @click="openMessage">发帖</div>
+      <div>发帖</div>
     </div>
     <b-message ref="message"></b-message>
   </div>
@@ -32,7 +32,7 @@ export default {
       tabActiveIndex: 0,
       tabs: [
         {
-          label: "资源共享"
+          label: "每日福利"
         },
         {
           label: "卡片商城"
