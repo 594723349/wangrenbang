@@ -8,7 +8,7 @@
           <van-tab title="关注" name="follow"></van-tab>
         </van-tabs>
       </div>
-      <van-icon class="search-icon" name="search" color="#CCCCCC" size="16px" @click="handleSearchVisible" />
+      <van-icon class="search-icon" name="search" color="#CCCCCC" @click="handleSearchVisible" />
     </div>
     <b-search ref="search"></b-search>
   </div>
@@ -62,6 +62,7 @@ export default {
   right: 20px;
   top: 50%;
   transform: translateY(-50%);
+  font-size: 12px;
 }
 /deep/ .van-tabs {
   .van-tabs__wrap {
@@ -69,7 +70,7 @@ export default {
   }
   .van-tab {
     color: rgb(135, 135, 135);
-    font-size: 10px;
+    font-size: 6px;
   }
   .van-tab--active {
     color: #333333;
@@ -78,7 +79,7 @@ export default {
   .van-tabs__line {
     background-color: rgb(135, 135, 135);
     height: 1px;
-    width: 0.5rem !important;
+    width: 0.3rem !important;
   }
   [class*="van-hairline"]::after {
     border: none;

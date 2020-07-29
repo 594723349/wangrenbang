@@ -47,7 +47,7 @@ export default {
   justify-content: center;
   align-items: center;
   height: 30px;
-  font-size: 8px;
+  font-size: 6px;
   background-color: rgb(242, 242, 242);
   color: rgb(182, 182, 182);
   .tab-item {
