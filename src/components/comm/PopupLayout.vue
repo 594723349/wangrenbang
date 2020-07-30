@@ -65,4 +65,16 @@ export default {
   padding-top: 40px;
   min-height: 100vh;
 }
+/deep/ .van-tabs {
+  /deep/ .van-tabs__wrap {
+    height: 30px;
+  }
+  .van-tabs__line {
+    height: 1px;
+    background-color: rgb(162, 162, 162);
+  }
+  .van-tab__text--ellipsis {
+    font-size: 10px;
+  }
+}
 </style>
